@@ -1,13 +1,15 @@
 import requests
+import os
+import datetime
 
 pixela_endpoint = "https://pixe.la/v1/users"
-name = "swati666"
-token = "pixelajkjkjkk12345"
-
+name = os.environ['user']
+token = os.environ['token']
+graph_id = os.environ['g_id']
 
 pixela_params = {
-    "token": "pixelajkjkjkk12345",
-    "username": "swati666",
+    "token": token,
+    "username": name,
     "agreeTermsOfService": "yes",
     "notMinor": "yes"
 }
@@ -21,7 +23,7 @@ secure_token = {
 }
 
 graph_params = {
-    "id": "swati",
+    "id": graph_id,
     "name": "Study Hours",
     "unit": "hours",
     "type": "float",
@@ -32,11 +34,12 @@ graph_params = {
 # print(graph_pixela.text)
 # link_for_graph = https://pixe.la/v1/users/swati666/graphs/swati.html
 
-graph_id = "swati"
 
+Date = datetime.datetime.now()
+todayDate = Date.date().strftime("%Y%m%d")
 add_pixel_params = {
-   "date": "20240112",
-   "quantity": "7.30",
+   "date": todayDate,
+   "quantity": "5.30",
 }
 
 add_pixel = requests.post(url=f"https://pixe.la/v1/users/{name}/graphs/{graph_id}",
